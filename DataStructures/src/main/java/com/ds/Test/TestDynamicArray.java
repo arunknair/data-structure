@@ -2,13 +2,13 @@ package com.ds.Test;
 
 import com.ds.Array.DynamicArray;
 
-public class Test {
+public class TestDynamicArray {
 
     public static void main(String[] args) {
         //testAdditionToDynamicArray();
         //testRemoveAtIndexDynamicArray();
         //testIndexofAndRemoveDynamicArray();
-        //testContainsDynamicArray();
+        testContainsDynamicArray();
     }
 
     private static void testContainsDynamicArray() {
