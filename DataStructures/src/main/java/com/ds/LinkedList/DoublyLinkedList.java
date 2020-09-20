@@ -71,8 +71,6 @@ public class DoublyLinkedList<T> {
             while (pointer != null) {
                 if(count == index) {
                     Node<T> item = new Node<T>(data, null, null);
-//                    System.out.println(pointer.data + "  >>> " );
-//                    System.out.println(pointer.prev + " >>> ");
                     pointer.prev.next = item;
                     item.next = pointer;
                 }
@@ -81,6 +79,105 @@ public class DoublyLinkedList<T> {
             }
             size++;
         }
+    }
+
+    public T removeFirst() {
+        if(isEmpty()) {
+            System.out.println("Empty list!!!");
+            return null;
+        }
+        T data = head.data;
+        if(getSize() == 1) {
+            head = tail = null;
+        } else {
+            Node<T> pointer = head;
+            pointer.next.prev = null;
+            head = head.next;
+        }
+        size--;
+        return data;
+    }
+
+    public T removeLast() {
+        if(isEmpty()) {
+            System.out.println("Empty list!!!");
+            return null;
+        }
+        T data = tail.data;
+        if(getSize() == 1) {
+            head = tail = null;
+        } else {
+            Node<T> pointer = tail;
+            pointer.prev.next = null;
+            tail = tail.prev;
+            pointer = null;
+        }
+        size--;
+        return data;
+    }
+
+    public T remove(T data) {
+        if(isEmpty()) {
+            System.out.println("Empty list!!!");
+            return null;
+        }
+        T removedData = null;
+        Node<T> pointer = head;
+        while (pointer != null) {
+            if(pointer.data.equals(data)) {
+                if(pointer == head) {
+                    removedData = removeFirst();
+                } else if(pointer == tail) {
+                    removedData = removeLast();
+                } else {
+                    removedData = pointer.data;
+                    pointer.prev.next = pointer.next;
+                    pointer.next.prev = pointer.prev;
+                    pointer = null;
+                    size--;
+                }
+                break;
+            }
+            pointer = pointer.next;
+        }
+        if(removedData == null) {
+            System.out.println("Cannot find the data!!!");
+        }
+        return removedData;
+    }
+
+    public T removeAtPosition(int index) {
+        if (isEmpty()) {
+            System.out.println("Empty list!!!");
+            return null;
+        }
+        if(getSize() < index || index <= 0) {
+            System.out.println("invalid index!!!!");
+            return null;
+        }
+        T data = null;
+        int count = 1;
+        Node<T> pointer = head;
+        while(pointer != null) {
+            if(count == index) {
+                if(pointer == head) {
+                    data = removeFirst();
+                } else if(pointer == tail) {
+                    data = removeLast();
+                } else {
+                    data = pointer.data;
+                    pointer.prev.next = pointer.next;
+                    pointer.next.prev = pointer.prev;
+                    pointer = null;
+                    size--;
+                }
+                break;
+            }
+            count++;
+            pointer = pointer.next;
+        }
+
+        return data;
     }
 
     @Override

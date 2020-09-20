@@ -15,6 +15,10 @@ public class TestDoublyLinkedList {
             System.out.println("2. Add to Fist");
             System.out.println("3. Add to Last");
             System.out.println("4. Add to Position");
+            System.out.println("5. Remove at First");
+            System.out.println("6. Remove at Last");
+            System.out.println("7. Remove Data");
+            System.out.println("8. Remove Data at Position");
             System.out.println("9. Display");
             System.out.println("0. Exit");
             System.out.println("Enter your option : ");
@@ -39,6 +43,22 @@ public class TestDoublyLinkedList {
                     System.out.println("Enter index : ");
                     int pos = scanner.nextInt();
                     dll.addToPosition(data, pos);
+                    break;
+                case 5 :
+                    System.out.println("Removed item :" + dll.removeFirst());
+                    break;
+                case 6 :
+                    System.out.println("Removed item :" + dll.removeLast());
+                    break;
+                case 7 :
+                    System.out.println("Enter data to remove : ");
+                    data = scanner.next();
+                    System.out.println("Removed item :" + dll.remove(data));
+                    break;
+                case 8 :
+                    System.out.println("Enter index to remove : ");
+                    pos = scanner.nextInt();
+                    System.out.println("Removed item :" + dll.removeAtPosition(pos));
                     break;
                 case 9:
                     System.out.println(dll);
